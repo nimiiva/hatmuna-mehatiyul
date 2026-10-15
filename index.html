@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סימולציה לכיתות ד'-ו': ערב אחרי הטיול השנתי בקבוצת הכיתה.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😴</text></svg>">
+<title>התמונה מהטיול</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;800;900&family=Assistant:wght@400;500;600;700;800&display=swap">
+<style>
+/* פריסה: אפליקציית צ'אט בטלפון, עמודה אחת עד 480px. כרטיסי בחירה עולים מלמטה במקום שורת ההקלדה. */
+:root {
+  --bg: #EDE6DC;          /* טפט הצ'אט */
+  --paper: #FBF7F2;       /* מסכי פתיחה וסיום */
+  --surface: #FFFFFF;
+  --ink: #2B2B33;
+  --ink-2: #55555F;
+  --muted: #7C7C86;
+  --rule: #D8D8DE;
+  --accent: #2975FF;
+  --accent-ink: #FFFFFF;
+  --head: #1F4FB8;
+  --head-ink: #FFFFFF;
+  --me: #D7E7FF;
+  --in: #FFFFFF;
+  --sys: #F7F1D9;
+  --note: #2B2B33;
+  --note-ink: #FBF7F2;
+  --tick: #2975FF;
+  --c-tsipi: #C2336A; --c-shmulik: #B8620A; --c-racheli: #138571; --c-tzvika: #3459B8; --c-yossi: #6E43C4;
+  --font-display: "Heebo", "Assistant", system-ui, sans-serif;
+  --font-body: "Assistant", "Heebo", system-ui, sans-serif;
+  --shadow: 0 1px 1px rgba(30,30,40,.12);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121318; --paper: #17181E; --surface: #22242C; --ink: #ECECF1; --ink-2: #B9B9C4; --muted: #9A9AA6; --rule: #34363F;
+  --accent: #5C95FF; --accent-ink: #0E1220; --head: #1A2238; --head-ink: #ECECF1; --me: #1F3A6A; --in: #23252D; --sys: #2C2A1F;
+  --note: #ECECF1; --note-ink: #17181E; --tick: #7FB3E4;
+  --c-tsipi: #F27BA6; --c-shmulik: #F2A55A; --c-racheli: #4FD1B8; --c-tzvika: #8FAEFF; --c-yossi: #B79BFF;
+  --shadow: 0 1px 1px rgba(0,0,0,.4); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121318; --paper: #17181E; --surface: #22242C; --ink: #ECECF1; --ink-2: #B9B9C4; --muted: #9A9AA6; --rule: #34363F;
+  --accent: #5C95FF; --accent-ink: #0E1220; --head: #1A2238; --head-ink: #ECECF1; --me: #1F3A6A; --in: #23252D; --sys: #2C2A1F;
+  --note: #ECECF1; --note-ink: #17181E; --tick: #7FB3E4;
+  --c-tsipi: #F27BA6; --c-shmulik: #F2A55A; --c-racheli: #4FD1B8; --c-tzvika: #8FAEFF; --c-yossi: #B79BFF;
+  --shadow: 0 1px 1px rgba(0,0,0,.4); color-scheme: dark; }
+
+html, body { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 20px; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+#app { height: 100%; max-width: 480px; margin: 0 auto; position: relative; overflow: hidden; background: var(--bg); }
+@media (min-width: 520px) { #app { border-inline: 1px solid var(--rule); } }
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; }
+
+/* פתיחה */
+#intro, #end { background: var(--paper); overflow-y: auto; padding: 40px 20px 32px; gap: 20px; }
+.eyebrow { font-size: 17px; font-weight: 700; letter-spacing: .04em; color: var(--accent); }
+h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 10vw, 3.4rem); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lede { font-size: 22px; line-height: 1.5; color: var(--ink-2); margin: 0; max-width: 32ch; }
+.phone-art { align-self: center; width: 150px; aspect-ratio: 1; border-radius: 36px; background: var(--surface); box-shadow: 0 10px 30px rgba(41,117,255,.18); display: grid; place-items: center; font-size: 64px; position: relative; }
+.phone-art span { position: absolute; top: 18px; inset-inline-start: 22px; font: 800 18px var(--font-display); color: var(--accent); }
+.gender { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: auto; }
+.gender p { grid-column: 1 / -1; margin: 0; font-weight: 700; color: var(--ink-2); }
+.btn { border: 0; border-radius: 16px; padding: 18px; font-weight: 800; font-size: 22px; cursor: pointer; background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 2px var(--rule); }
+.small { font-size: 18px; color: var(--muted); margin: 0; }
+
+/* צ'אט */
+.bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px; padding-top: calc(10px + env(safe-area-inset-top, 0px)); background: var(--head); color: var(--head-ink); min-height: 68px; }
+.av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; flex: none; background: rgba(255,255,255,.18); font-weight: 800; font-family: var(--font-display); }
+.htxt { flex: 1; min-width: 0; }
+#htitle { font-weight: 800; font-size: 21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#hsub { font-size: 16px; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#backarrow { font-size: 24px; opacity: .9; }
+#speed { border: 0; background: rgba(255,255,255,.16); color: var(--head-ink); border-radius: 999px; padding: 7px 12px; font-size: 15px; font-weight: 700; cursor: pointer; flex: none; }
+#scroll { flex: 1; overflow-y: auto; padding: 12px 16px 16px; scroll-behavior: smooth; }
+.thread { display: flex; flex-direction: column; gap: 4px; }
+.row { display: flex; flex-direction: column; align-items: flex-start; }
+.row.me { align-items: flex-end; }
+.row.gap { margin-top: 10px; }
+.bub { max-width: 84%; background: var(--in); border-radius: 16px; border-start-start-radius: 4px; padding: 8px 13px 5px; box-shadow: var(--shadow); line-height: 1.4; font-size: 21px; animation: pop .18s ease-out; }
+.row.me .bub { background: var(--me); border-start-start-radius: 16px; border-start-end-radius: 4px; }
+.row.cont .bub { border-start-start-radius: 16px; }
+.row.me.cont .bub { border-start-end-radius: 16px; }
+.who { font-size: 17px; font-weight: 800; margin-bottom: 2px; }
+.meta { font-size: 13px; color: var(--muted); text-align: end; margin-top: 2px; font-variant-numeric: tabular-nums; direction: ltr; }
+.meta .tk { color: var(--tick); margin-inline-start: 3px; }
+.sys { align-self: center; background: var(--sys); color: var(--ink-2); font-size: 18px; font-weight: 600; padding: 6px 14px; border-radius: 12px; margin: 10px 0; box-shadow: var(--shadow); text-align: center; }
+.chip { align-self: center; background: var(--surface); color: var(--ink-2); font-size: 15px; font-weight: 700; padding: 4px 12px; border-radius: 8px; margin: 6px 0 10px; box-shadow: var(--shadow); }
+.note { align-self: center; background: var(--note); color: var(--note-ink); border-radius: 18px; padding: 16px 20px; margin: 12px 0; max-width: 92%; text-align: center; font-weight: 700; font-size: 21px; line-height: 1.45; white-space: pre-line; animation: pop .25s ease-out; }
+.note::before { content: "פתק אישי"; display: block; font-size: 14px; font-weight: 700; opacity: .6; margin-bottom: 4px; letter-spacing: .03em; }
+.photo { width: 230px; max-width: 100%; aspect-ratio: 4/3; border-radius: 10px; margin: 2px 0 2px; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #9EC3F5 0%, #6E93D6 55%, #45629E 100%); display: grid; place-items: center; }
+.photo .seat { position: absolute; inset: auto 0 0 0; height: 38%; background: linear-gradient(#3B4D78, #2A3757); }
+.photo .z { font-size: 62px; position: relative; filter: drop-shadow(0 4px 8px rgba(0,0,0,.25)); }
+.photo .zz { position: absolute; top: 12px; inset-inline-start: 18px; font: 900 24px var(--font-display); color: #fff; opacity: .9; }
+.photo .cap { position: absolute; bottom: 6px; inset-inline-end: 8px; font-size: 12px; color: #fff; opacity: .85; }
+.sticker { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 50% 40%, #FFE9A8, #F5CC59 70%); border: 5px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,.18); display: grid; place-items: center; font-size: 68px; position: relative; animation: pop .25s ease-out; }
+.sticker b { position: absolute; top: 8px; inset-inline-end: 4px; font: 900 20px var(--font-display); color: #3459B8; transform: rotate(-12deg); }
+.bub.bare { background: transparent; box-shadow: none; padding: 0; }
+.typing .bub { padding: 12px 16px; }
+.dots { display: inline-flex; gap: 5px; }
+.dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.dots i:nth-child(2) { animation-delay: .2s; } .dots i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%,60%,100% { opacity: .25 } 30% { opacity: 1 } }
+@keyframes pop { from { transform: translateY(6px); opacity: 0 } to { transform: none; opacity: 1 } }
+
+/* תחתית: שורת הקלדה או בחירות */
+#foot { background: var(--bg); padding: 8px 12px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+#composer { display: flex; gap: 8px; align-items: center; }
+#composer .fake { flex: 1; background: var(--surface); border-radius: 999px; padding: 12px 18px; color: var(--muted); font-size: 18px; }
+#composer .mic { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); opacity: .45; display: grid; place-items: center; color: var(--accent-ink); }
+#choices { background: var(--surface); border-radius: 20px; padding: 14px; box-shadow: 0 -4px 20px rgba(20,20,40,.12); display: flex; flex-direction: column; gap: 10px; animation: up .25s ease-out; max-height: 62vh; overflow-y: auto; }
+#choices .q { font-weight: 800; font-size: 21px; margin: 0 4px 2px; line-height: 1.35; }
+.opt { text-align: start; border: 2px solid var(--rule); background: var(--paper); border-radius: 14px; padding: 14px 16px; font-weight: 700; font-size: 20px; cursor: pointer; line-height: 1.3; transition: border-color .12s, background .12s; }
+.opt:hover { border-color: var(--accent); }
+.opt:active { transform: scale(.99); }
+.opt.picked { border-color: var(--accent); background: var(--me); }
+.opt.go { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); text-align: center; }
+.undo { align-self: center; border: 0; background: none; color: var(--accent); font-weight: 700; font-size: 17px; padding: 6px 10px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@keyframes up { from { transform: translateY(20px); opacity: 0 } to { transform: none; opacity: 1 } }
+
+#toast { position: absolute; top: calc(76px + env(safe-area-inset-top, 0px)); inset-inline: 12px; background: var(--surface); border-radius: 14px; padding: 12px 14px; box-shadow: 0 8px 24px rgba(0,0,0,.22); display: flex; gap: 10px; align-items: center; z-index: 5; animation: drop .3s ease-out; }
+#toast .av { background: var(--me); color: var(--c-yossi); width: 38px; height: 38px; font-size: 18px; }
+#toast b { display: block; font-size: 16px; }
+#toast span { font-size: 18px; color: var(--ink-2); }
+@keyframes drop { from { transform: translateY(-16px); opacity: 0 } to { transform: none; opacity: 1 } }
+
+#daybreak { position: absolute; inset: 0; background: var(--head); color: var(--head-ink); display: grid; place-items: center; text-align: center; z-index: 6; animation: fade .5s ease-out; padding: 24px; }
+#daybreak h2 { font-family: var(--font-display); font-weight: 900; font-size: 44px; margin: 0 0 6px; }
+#daybreak p { margin: 0; font-size: 21px; opacity: .85; }
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+
+/* סיום */
+#end h2 { font-family: var(--font-display); font-weight: 900; font-size: 38px; line-height: 1.15; margin: 0; text-wrap: balance; }
+.story p { margin: 0 0 10px; font-size: 22px; line-height: 1.5; }
+.card { background: var(--surface); border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.card h3 { margin: 0; font-family: var(--font-display); font-size: 23px; font-weight: 800; }
+.card ul { margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 8px; line-height: 1.45; font-size: 20px; }
+.stop { text-align: center; padding: 8px 0; }
+.stop .t { font-weight: 800; color: var(--muted); }
+.stop .bigq { font-family: var(--font-display); font-weight: 900; font-size: 30px; line-height: 1.2; margin-top: 6px; text-wrap: balance; }
+.qs li { color: var(--ink-2); }
+.endbtns { display: flex; flex-direction: column; gap: 10px; }
+.summary { font-family: var(--font-display); font-weight: 800; font-size: 27px; line-height: 1.35; margin: 0; text-wrap: pretty; }
+.picks { margin: 0; padding-inline-start: 24px; display: flex; flex-direction: column; gap: 12px; }
+.picks li { line-height: 1.35; }
+.picks span { display: block; font-size: 17px; color: var(--muted); }
+.picks b { font-size: 20px; }
+@media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+[hidden]{display:none!important}
+</style>
+
+</head>
+<body>
+<div id="app" dir="rtl" lang="he">
+  <section id="intro" class="screen">
+    <div class="eyebrow">סימולציה לכיתות ד'-ו'</div>
+    <h1>התמונה מהטיול</h1>
+    <p class="lede">ערב אחרי הטיול השנתי. כולם בקבוצת הכיתה. מדי פעם תצטרכו לבחור מה לעשות, ותראו מה קורה אחרי.</p>
+    <div class="phone-art" aria-hidden="true"><span>Zzz</span>😴</div>
+    <p class="small">אין פה תשובות נכונות או לא נכונות. מה שבוחרים, קורה. ואפשר תמיד לחזור ולבחור אחרת.</p>
+    <div class="gender">
+      <p>איך לפנות אליך?</p>
+      <button class="btn" id="g-m" type="button">אני בן</button>
+      <button class="btn" id="g-f" type="button">אני בת</button>
+    </div>
+  </section>
+
+  <section id="chat" class="screen" hidden>
+    <header class="bar">
+      <div id="backarrow" hidden aria-hidden="true">→</div>
+      <div class="av" id="hav">🌟</div>
+      <div class="htxt"><div id="htitle">הכיתה שלנו 🌟</div><div id="hsub"></div></div>
+      <button id="speed" type="button" aria-label="מהירות">⏩ מהר</button>
+    </header>
+    <div id="toast" hidden></div>
+    <main id="scroll">
+      <div class="thread" data-t="group"></div>
+      <div class="thread" data-t="yossi" hidden></div>
+      <div class="thread" data-t="tsipi" hidden></div>
+    </main>
+    <footer id="foot">
+      <div id="composer"><div class="fake">הודעה</div><div class="mic">🎤</div></div>
+      <div id="choices" hidden></div>
+    </footer>
+    <div id="daybreak" hidden></div>
+  </section>
+
+  <section id="end" class="screen" hidden></section>
+</div>
+
+<script>
+/* ============ דמויות ============ */
+const C = {
+  tsipi:   { name: "ציפי",   f: true,  av: "צ", cls: "tsipi" },    // זו שמפיצה
+  shmulik: { name: "שמוליק", f: false, av: "ש", cls: "shmulik" },  // הנגרר ששולח אם את/ה לא
+  racheli: { name: "רחלי",   f: true,  av: "ר", cls: "racheli" },  // הרגישה, מעלה את המחנכת
+  tzvika:  { name: "צביקה",  f: false, av: "צ", cls: "tzvika" },   // החבר המהסס
+  yossi:   { name: "יוסי",   f: false, av: "י", cls: "yossi" },    // הנפגע
+};
+const THREADS = {
+  group: { title: "הכיתה שלנו 🌟", av: "🌟" },
+  yossi: { title: "יוסי", av: "י", sub: "מחובר" },
+  tsipi: { title: "ציפי", av: "צ", sub: "מחוברת" },
+};
+
+/* ============ מצב ============ */
+let F = {};             // דגלים: מה השחקן עשה ומה קרה
+let GENDER = "m";
+let speed = 1;
+let view = "group";
+let clockMin = 0;
+let lastSender = {};
+let yossiLeft = false;
+// חזרה אחורה: כל בחירה נשמרת. כדי לחזור, מריצים את הסיפור מההתחלה בלי השהיות עם הבחירות הקודמות
+let RUN = 0;            // מזהה ריצה. ריצה ישנה פשוט נעצרת
+let HIST = [];          // הבחירות עד עכשיו
+let REPLAY = null;      // תור בחירות להרצה מהירה
+let CHOSEN = [];        // מה נבחר, לתצוגה במסך הסיום
+const G = (m, f) => GENDER === "f" ? f : m;
+const $ = s => document.querySelector(s);
+function wait(ms) {
+  const my = RUN;
+  if (REPLAY) return Promise.resolve();
+  return new Promise(r => setTimeout(() => { if (my === RUN) r(); }, ms / speed));
+}
+
+/* ============ שעון הסיפור ============ */
+function setClock(hhmm) { const [h, m] = hhmm.split(":").map(Number); clockMin = h * 60 + m; }
+function tick() { clockMin += Math.random() < .4 ? 1 : 0; const h = Math.floor(clockMin / 60) % 24, m = clockMin % 60; return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`; }
+
+/* ============ רינדור ============ */
+function threadEl(t) { return document.querySelector(`.thread[data-t="${t}"]`); }
+function scrollDown() { const s = $("#scroll"); requestAnimationFrame(() => { s.scrollTop = s.scrollHeight; }); }
+function setHeader(t, typingWho) {
+  const th = THREADS[t];
+  $("#htitle").textContent = th.title;
+  $("#hav").textContent = th.av;
+  $("#backarrow").hidden = t === "group";
+  let sub = t === "group" ? (yossiLeft ? "ציפי, שמוליק, רחלי, צביקה ועוד 23" : "ציפי, שמוליק, רחלי, צביקה, יוסי ועוד 23") : th.sub;
+  if (typingWho) sub = (t === "group" ? C[typingWho].name + " " : "") + (C[typingWho].f ? "מקלידה..." : "מקליד...");
+  $("#hsub").textContent = sub;
+}
+function openThread(t) {
+  view = t;
+  document.querySelectorAll(".thread").forEach(el => el.hidden = el.dataset.t !== t);
+  setHeader(t);
+  scrollDown();
+}
+function addRow(t, node, me, from) {
+  const row = document.createElement("div");
+  row.className = "row" + (me ? " me" : "");
+  row.classList.add(lastSender[t] === (me ? "__me" : from) ? "cont" : "gap");
+  row.appendChild(node);
+  threadEl(t).appendChild(row);
+  lastSender[t] = me ? "__me" : from;
+  if (t === view) scrollDown();
+}
+function bubble(t, from, inner, me) {
+  const b = document.createElement("div");
+  b.className = "bub";
+  if (!me && t === "group" && lastSender[t] !== from) {
+    const w = document.createElement("div"); w.className = "who"; w.style.color = `var(--c-${C[from].cls})`; w.textContent = C[from].name; b.appendChild(w);
+  }
+  if (typeof inner === "string") { const p = document.createElement("div"); p.textContent = inner; b.appendChild(p); }
+  else b.appendChild(inner);
+  const meta = document.createElement("div"); meta.className = "meta";
+  meta.innerHTML = tick() + (me ? '<span class="tk">✓✓</span>' : "");
+  b.appendChild(meta);
+  return b;
+}
+function chip(t, text) { const d = document.createElement("div"); d.className = "chip"; d.textContent = text; threadEl(t).appendChild(d); lastSender[t] = null; }
+
+/* ============ פעולות בסיפור ============ */
+async function showTyping(t, who, ms) {
+  if (REPLAY) return;
+  if (t !== view) { await wait(ms); return; }
+  setHeader(t, who);
+  const b = document.createElement("div"); b.className = "bub"; b.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+  const row = document.createElement("div"); row.className = "row typing gap"; row.appendChild(b);
+  threadEl(t).appendChild(row); scrollDown();
+  const my = RUN;
+  await wait(ms);
+  row.remove(); if (my === RUN) setHeader(t);
+}
+// הודעה של דמות. t = שרשור (group / yossi / tsipi)
+async function say(who, text, t = "group", opt = {}) {
+  const ms = opt.ms ?? Math.min(2400, 650 + text.length * 40);
+  await wait(opt.pause ?? 450);
+  if (opt.typing === false) await wait(ms * .5); else await showTyping(t, who, ms);
+  addRow(t, bubble(t, who, text, false), false, who);
+}
+const dm = (who, text, opt) => say(who, text, who, opt);
+// הודעה של השחקן
+async function me(text, t = view) {
+  await wait(350);
+  addRow(t, bubble(t, null, text, true), true);
+  await wait(450);
+}
+function photoNode() {
+  const d = document.createElement("div"); d.className = "photo";
+  d.innerHTML = '<div class="seat"></div><div class="zz">Zzz</div><div class="z">😴🎒</div><div class="cap">📷 IMG_2207.jpg</div>';
+  return d;
+}
+function stickerNode() { const d = document.createElement("div"); d.className = "sticker"; d.innerHTML = '😴<b>Zzz</b>'; return d; }
+async function photo(who, t = "group") {
+  if (who === "__me") { await wait(400); addRow(t, bubble(t, null, photoNode(), true), true); await wait(500); return; }
+  await showTyping(t, who, 900);
+  addRow(t, bubble(t, who, photoNode(), false), false, who);
+}
+async function sticker(who, t = "group") {
+  await showTyping(t, who, 700);
+  const b = bubble(t, who, stickerNode(), false); b.classList.add("bare");
+  b.querySelector(".who")?.remove();
+  addRow(t, b, false, who);
+  lastSender[t] = null;
+}
+async function sys(text, t = "group") { await wait(800); const d = document.createElement("div"); d.className = "sys"; d.textContent = text; threadEl(t).appendChild(d); lastSender[t] = null; if (t === view) scrollDown(); }
+async function note(text) { await wait(800); const d = document.createElement("div"); d.className = "note"; d.textContent = text; threadEl(view).appendChild(d); lastSender[view] = null; scrollDown(); await wait(1500); }
+function toast(who, text) {
+  if (REPLAY) return;
+  const el = $("#toast");
+  el.innerHTML = `<div class="av">${C[who].av}</div><div><b>${C[who].name}</b><span></span></div>`;
+  el.querySelector("span").textContent = text;
+  el.hidden = false;
+  setTimeout(() => { el.hidden = true; }, 4200 / speed);
+}
+async function dayBreak(title, subtitle) {
+  if (REPLAY) return;
+  const el = $("#daybreak");
+  el.innerHTML = `<div><h2></h2><p></p></div>`;
+  el.querySelector("h2").textContent = title; el.querySelector("p").textContent = subtitle;
+  el.hidden = false;
+  await wait(2800);
+  el.hidden = true;
+}
+// כרטיס בחירה. מחזיר את האפשרות שנבחרה
+async function choose(question, options) {
+  const my = RUN;
+  const opts = options.filter(o => o.show === undefined || o.show);
+  const isGo = opts.length === 1 && opts[0].go;
+  if (REPLAY) {
+    if (isGo) return opts[0];
+    const id = REPLAY.shift();
+    if (!REPLAY.length) REPLAY = null;
+    HIST.push(id);
+    const o = opts.find(x => x.id === id) || opts[0];
+    if (question.trim() && !o.warm) CHOSEN.push({ q: question, a: o.label });
+    if (!REPLAY) { openThread(view); }
+    return o;
+  }
+  await wait(600);
+  return new Promise(resolve => {
+    if (my !== RUN) return;
+    const box = $("#choices"); box.innerHTML = "";
+    if (question.trim()) { const q = document.createElement("p"); q.className = "q"; q.textContent = question; box.appendChild(q); }
+    opts.forEach(o => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "opt" + (o.go ? " go" : ""); b.textContent = o.label;
+      b.onclick = () => {
+        if (my !== RUN) return;
+        box.querySelectorAll("button").forEach(x => x.disabled = true);
+        b.classList.add("picked");
+        if (!isGo) { HIST.push(o.id); if (question.trim() && !o.warm) CHOSEN.push({ q: question, a: o.label }); }
+        setTimeout(() => { if (my !== RUN) return; box.hidden = true; $("#composer").hidden = false; resolve(o); }, 240);
+      };
+      box.appendChild(b);
+    });
+    if (HIST.length) {
+      const u = document.createElement("button"); u.type = "button"; u.className = "undo";
+      u.textContent = "↩ לחזור לבחירה הקודמת";
+      u.onclick = () => restart(HIST.slice(0, -1));
+      box.appendChild(u);
+    }
+    $("#composer").hidden = true; box.hidden = false;
+    scrollDown();
+  });
+}
+
+/* ============ הסיפור ============ */
+async function story() {
+  setClock("19:42");
+  openThread("group");
+  chip("group", "היום");
+
+  // --- 0. חימום ---
+  await say("shmulik", "איזה טיול היה 😍");
+  await say("tsipi", "לא ישנתי כל הלילה בחדרים 😂");
+  await note(G("זו הקבוצה של הכיתה שלך.\nמדי פעם יופיעו למטה אפשרויות, ואתה בוחר מה לעשות.", "זו הקבוצה של הכיתה שלך.\nמדי פעם יופיעו למטה אפשרויות, ואת בוחרת מה לעשות."));
+  let c = await choose("מה היה הכי כיף בטיול?", [
+    { id: "pool", label: "הבריכה", say: "הבריכה!!! 🏊", warm: true },
+    { id: "fire", label: "המדורה", say: "המדורה הייתה מושלמת 🔥", warm: true },
+    { id: "bus", label: "השירים באוטובוס", say: "השירים באוטובוס חחח 🎶", warm: true },
+  ]);
+  await me(c.say);
+  await say("racheli", c.id === "fire" ? "נכון??? והמרשמלו 😋" : "נכוןןן 😍");
+
+  // --- 1. התמונה ---
+  await say("tsipi", "רגע!!! מישהו צילם את יוסי ישן באוטובוס??? 😂😂", "group", { pause: 1200 });
+  await say("yossi", "די נו 😅 אף אחד לא צילם אותי");
+  await note("האמת? צילמת אותו.\nהתמונה אצלך בטלפון, והיא ממש מצחיקה.");
+  c = await choose("התמונה אצלך. מה עושים?", [
+    { id: "send", label: "לשלוח את התמונה לקבוצה" },
+    { id: "quiet", label: "לא לענות כלום" },
+    { id: "stop", label: "לכתוב שיעזבו את יוסי" },
+  ]);
+  if (c.id === "send") {
+    F.sent = true;
+    await photo("__me");
+    await say("tsipi", "חחחחחחחחחחחח 😂", "group", { typing: false });
+    await say("yossi", "למה שלחת את זה?? ביקשתי 😠");
+  } else {
+    if (c.id === "stop") {
+      F.stopped_early = true;
+      await me("עזבו אותו, הוא ביקש");
+      await say("tsipi", "וואו מה נהיית המורה? 😂");
+    } else {
+      await wait(1500);
+    }
+    await say("shmulik", "חחח לי יש!!! 😏");
+    await say("yossi", "שמוליק לא!!!", "group", { ms: 700 });
+    await photo("shmulik");
+    F.shmulik_sent = true;
+  }
+
+  // --- 2. הצחוק והסטיקר ---
+  await say("racheli", "סליחה יוסי אבל זה באמת מצחיק 🤭");
+  await say("tsipi", "אני עושה מזה סטיקר!!!");
+  await sticker("tsipi");
+  await say("yossi", "די באמת");
+  c = await choose("כולם צוחקים. מה עושים?", [
+    { id: "laugh", label: "לשלוח 😂😂😂" },
+    { id: "quiet", label: "לא להגיב" },
+    { id: "calm", label: "לכתוב שמספיק" },
+  ]);
+  if (c.id === "laugh") {
+    F.laughed = true;
+    await me("😂😂😂");
+    await say("tsipi", "נכון??? 😂");
+  } else if (c.id === "calm") {
+    F.calmed = true;
+    await me("די, מספיק. הוא לא נהנה מזה");
+    await say("tsipi", "אוף, כמה רציני 🙄");
+  }
+  await say("yossi", "אוקיי הבנתי", "group", { pause: 1400 });
+  await sys("יוסי יצא מהקבוצה");
+  yossiLeft = true; setHeader("group");
+
+  // --- 3. יוסי יצא ---
+  await say("racheli", "אוי. הוא יצא", "group", { pause: 1400 });
+  await say("tzvika", "אולי נמחק את התמונה?");
+  // יוסי כותב ראשון, לפי מה שעשית
+  const ping = F.sent ? "למה שלחת את זה?"
+    : (F.stopped_early || F.calmed) ? "ראיתי שניסית לעצור אותם"
+    : F.laughed ? G("ראיתי שגם אתה צחקת", "ראיתי שגם את צחקת")
+    : G("גם אתה חושב שזה מצחיק?", "גם את חושבת שזה מצחיק?");
+  await wait(1200);
+  addRow("yossi", bubble("yossi", "yossi", ping, false), false, "yossi");
+  toast("yossi", ping);
+  c = await choose("יוסי שלח לך הודעה בפרטי.", [
+    { id: "open", label: "לפתוח את ההודעה של יוסי" },
+    { id: "later", label: "להתעלם" },
+  ]);
+  if (c.id === "open") await yossiEvening();
+
+  // --- 4. ציפי רוצה לשלוח לשכבה ---
+  await say("tsipi", "הסטיקר הזה גאוני. אני שולחת אותו לקבוצה של השכבה 😂😂", "group", { pause: 1400 });
+  c = await choose("ציפי עומדת לשלוח את הסטיקר לכל השכבה.", [
+    { id: "public", label: "לכתוב לה בקבוצה שלא תשלח" },
+    { id: "dm", label: "לכתוב לציפי בפרטי" },
+    { id: "enc", label: "לכתוב לה ״שלחי!״" },
+    { id: "quiet", label: "לא להגיב" },
+  ]);
+  if (c.id === "public") {
+    F.stopped_public = true;
+    await me("ציפי אל תשלחי את זה");
+    await say("tsipi", F.sent ? G("אמר זה ששלח את התמונה 😂", "אמרה זאת ששלחה את התמונה 😂") : "וואו משטרת הוואטסאפ הגיעה 🚓😂");
+    await say("racheli", "לא, באמת. אל תשלחי. יוסי יצא בגלל זה");
+    await say("tsipi", "טוב טוב, לא שולחת 🙄");
+  } else if (c.id === "dm") {
+    await tsipiDM();
+    if (F.persuaded) await say("tsipi", "טוב עזבו, לא שולחת לשכבה");
+  } else if (c.id === "enc") {
+    F.encouraged = true;
+    await me("שלחיייי 😂");
+  }
+  F.spread_stopped = !!(F.stopped_public || F.persuaded);
+  if (!F.spread_stopped) {
+    F.spread = true;
+    await say("tsipi", "שלחתי 😎", "group", { pause: 1200 });
+    await sys("הסטיקר נשלח לקבוצה ״השכבה שלנו 🌈״");
+  }
+
+  // --- 5. לילה ---
+  setClock("22:31");
+  await say("tzvika", "טוב לילה 💤", "group", { pause: 1600 });
+  if (!F.yossi_opened) {
+    c = await choose("ההודעה של יוסי עדיין מחכה לך.", [
+      { id: "open", label: "לענות ליוסי" },
+      { id: "sleep", label: "ללכת לישון" },
+    ]);
+    if (c.id === "open") await yossiEvening();
+    else F.yossi_unanswered = true;
+  }
+  await sys("🌙 כולם הלכו לישון");
+
+  // --- 6. למחרת ---
+  await dayBreak("למחרת בבוקר", "בית הספר · ההפסקה של 10:00");
+  setClock("10:02");
+  chip("group", "היום");
+  if (view !== "group") openThread("group");
+  await say("tzvika", "יוסי לא הגיע היום", "group", { pause: 500 });
+  await say("racheli", "נראה לי שזה בגלל אתמול. אני חושבת לספר למחנכת");
+  await say("tsipi", "מה?? זה להלשין!");
+  c = await choose("יוסי לא הגיע, ורחלי מתלבטת. מה עושים?", [
+    { id: "teacher", label: "לספר למחנכת" },
+    { id: "no", label: "להגיד שלא צריך לערב מבוגרים" },
+  ]);
+  await adultChoice(c);
+  await wait(1300);
+  showEnd();
+}
+
+async function adultChoice(c) {
+  if (c.id === "teacher") {
+    F.teacher = true;
+    await me("נראה לי שכן כדאי לספר למחנכת");
+    await say("racheli", "טוב. אני הולכת אליה עכשיו");
+    await say("tsipi", "רק אל תגידי שמות");
+  } else if (c.id === "no") {
+    F.opposed = true;
+    await me("לא צריך לערב מבוגרים");
+    await say("tsipi", "סוף סוף מישהו הגיוני");
+    await say("racheli", "טוב. בינתיים אני לא אומרת כלום");
+  }
+}
+
+async function askDelete(text) {
+  F.asked_delete = true;
+  await me(text);
+  await say("racheli", "כן. מחקתי");
+  await say("tsipi", "תמחקו מה שבא לכם. אצלי זה שמור 😎");
+}
+
+/* ---- שיחה פרטית עם יוסי, בערב ---- */
+async function yossiEvening() {
+  F.yossi_opened = true;
+  openThread("yossi");
+  await wait(600);
+  const opts = F.sent ? [
+    { id: "sorry", label: "להתנצל", say: "סליחה ששלחתי. זה לא היה בסדר" },
+    { id: "joke", label: "להגיד שזה סתם צחוק", say: "נו זה סתם צחוק, אל תיקח ללב" },
+    { id: "what", label: "לשאול מה קורה", say: "מה קורה?" },
+  ] : [
+    { id: "ok", label: "לשאול אם הוא בסדר", say: "אתה בסדר?" },
+    { id: "sorry", label: "להגיד שזה לא היה בסדר", say: G("אני מצטער. זה לא היה בסדר מה שקרה", "אני מצטערת. זה לא היה בסדר מה שקרה") },
+    { id: "joke", label: "להגיד שזה סתם צחוק", say: "עזוב, זה סתם צחוק. מחר כולם ישכחו" },
+    { id: "rude", label: "להגיד לו שיפסיק עם הדרמה", say: "די עם הדרמה, זו רק תמונה" },
+  ];
+  let c = await choose("מה עונים ליוסי?", opts);
+  await me(c.say);
+  let step = c.id;
+  if (step === "what") {
+    await dm("yossi", "מה נראה לך?");
+    c = await choose("מה עונים?", [
+      { id: "sorry", label: "להתנצל", say: "סליחה ששלחתי. באמת" },
+      { id: "joke", label: "להגיד שזה סתם צחוק", say: "נו זה סתם צחוק" },
+    ]);
+    await me(c.say); step = c.id;
+  }
+  if (step === "rude") {
+    F.rude = true;
+    await dm("yossi", "אין לי מה לדבר איתך");
+    return backToGroup();
+  }
+  if (step === "joke") {
+    F.dismissed = true;
+    await dm("yossi", F.sent ? G("חשבתי שאתה חבר שלי", "חשבתי שאת חברה שלי") : "אז למה כתבת לי?");
+    c = await choose("מה עכשיו?", [
+      { id: "sorry2", label: "לכתוב סליחה", say: "סליחה. באמת" },
+      { id: "leave", label: "לסגור את השיחה" },
+    ]);
+    if (c.id === "leave") return backToGroup();
+    await me(c.say);
+    F.apology = true;
+    await dm("yossi", "טוב.");
+  } else {
+    if (step === "sorry") F.apology = true;
+    await dm("yossi", step === "sorry" ? "כן... זה ממש ביאס אותי. כולם צוחקים עליי" : "לא ממש. כולם צוחקים עליי");
+  }
+  // יוסי התרכך ומבקש דבר אחד
+  F.yossi_good = true;
+  if (F.asked_delete) {
+    await dm("yossi", "צביקה אמר לי שביקשת מכולם למחוק. תודה", { pause: 1000 });
+    return backToGroup();
+  }
+  await dm("yossi", G("רק תגיד להם למחוק את זה", "רק תגידי להם למחוק את זה"), { pause: 1000 });
+  c = await choose("יוסי מבקש ממך משהו.", [
+    { id: "promise", label: "להבטיח לו", say: "בסדר. אני אגיד להם" },
+    { id: "cant", label: "להגיד שזה לא תלוי בך", say: G("אני לא יכול להכריח אותם...", "אני לא יכולה להכריח אותם...") },
+  ]);
+  await me(c.say);
+  if (c.id === "promise") { F.promised = true; await dm("yossi", "תודה 🙏"); }
+  else await dm("yossi", "אוקיי");
+  await backToGroup();
+  if (F.promised && !F.asked_delete) {
+    c = await choose("הבטחת ליוסי לבקש מהם למחוק.", [
+      { id: "ask", label: "לכתוב בקבוצה שימחקו" },
+      { id: "no", label: "לא עכשיו" },
+    ]);
+    if (c.id === "ask") await askDelete("יוסי ביקש שנמחק את התמונה. בואו נמחק");
+  }
+}
+
+async function backToGroup() {
+  await choose(" ", [{ id: "back", label: "חזרה לקבוצה", go: true }]);
+  openThread("group");
+  await wait(300);
+}
+
+/* ---- שיחה פרטית עם ציפי ---- */
+async function tsipiDM() {
+  F.dm_tsipi = true;
+  openThread("tsipi");
+  await dm("tsipi", "מה? 😂");
+  const reason = { id: "reason", label: "לבקש ממנה ולהסביר למה", say: "בבקשה אל תשלחי. יוסי יצא מהקבוצה, זה ממש פגע בו" };
+  const rude = { id: "rude", label: G("להגיד לה מה אני חושב עליה", "להגיד לה מה אני חושבת עליה"), say: "את ממש רעה, את יודעת?" };
+  let c = await choose("מה כותבים לציפי?", [reason, { id: "plain", label: "רק לבקש שלא תשלח", say: "אל תשלחי" }, rude]);
+  await me(c.say);
+  if (c.id === "plain") {
+    await dm("tsipi", "למה? כולה סטיקר 😂");
+    c = await choose("ציפי לא מבינה למה.", [
+      { id: "reason", label: "להסביר לה", say: "כי זה לא מצחיק אותו. הוא יצא מהקבוצה בגלל זה" },
+      rude,
+      { id: "give", label: "לוותר", say: "טוב, עזבי" },
+    ]);
+    await me(c.say);
+    if (c.id === "give") { await dm("tsipi", "😂👍"); return backToGroup(); }
+  }
+  if (c.id === "rude") {
+    F.backfire = true;
+    await dm("tsipi", G("וואו. מי אתה בכלל? שולחת.", "וואו. מי את בכלל? שולחת."));
+    return backToGroup();
+  }
+  await dm("tsipi", "באמת? חשבתי שהוא צוחק איתנו");
+  await dm("tsipi", "טוב. לא שולחת 😕", { pause: 1100 });
+  F.persuaded = true;
+  await backToGroup();
+}
+
+/* ============ סיום ============ */
+function showEnd() {
+  let summary;
+  if (F.teacher) summary = F.spread
+    ? "הסטיקר הגיע לכל השכבה, ואת זה כבר אי אפשר להחזיר. רחלי סיפרה למחנכת, והמחנכת דיברה עם יוסי ועזרה לו לחזור לכיתה."
+    : "הסטיקר לא הגיע לשכבה. רחלי סיפרה למחנכת, והמחנכת דיברה עם יוסי. אחרי יומיים הוא חזר לכיתה.";
+  else summary = (F.spread ? "הסטיקר הגיע לכל השכבה. " : "")
+    + "יוסי לא הגיע שבוע לבית הספר, ובסוף סיפר להורים שלו. הוא נפגע מאוד.";
+
+  const esc = s => s.replace(/[&<>]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
+  const end = $("#end");
+  end.innerHTML = `
+    <div class="eyebrow">מה קרה בסוף</div>
+    <p class="summary">${esc(summary)}</p>
+    <div class="card"><h3>הבחירות שלך</h3><ol class="picks">${CHOSEN.map(c => `<li><span>${esc(c.q)}</span><b>${esc(c.a)}</b></li>`).join("")}</ol></div>
+    <div class="endbtns">
+      <button class="btn" id="back1" type="button">↩ לחזור לבחירה האחרונה</button>
+      <button class="btn ghost" id="again" type="button">לשחק מההתחלה</button>
+    </div>`;
+  $("#chat").hidden = true;
+  end.hidden = false;
+  end.scrollTop = 0;
+  $("#back1").onclick = () => restart(HIST.slice(0, -1));
+  $("#again").onclick = () => location.reload();
+}
+
+/* ============ התחלה וחזרה אחורה ============ */
+function restart(hist) {
+  RUN++;
+  F = {}; HIST = []; CHOSEN = []; lastSender = {}; yossiLeft = false; view = "group";
+  REPLAY = hist.length ? [...hist] : null;
+  document.querySelectorAll(".thread").forEach(el => el.innerHTML = "");
+  $("#choices").hidden = true; $("#choices").innerHTML = ""; $("#composer").hidden = false;
+  $("#toast").hidden = true; $("#daybreak").hidden = true;
+  $("#end").hidden = true; $("#chat").hidden = false;
+  story();
+}
+function start(g) {
+  GENDER = g;
+  $("#intro").hidden = true;
+  restart([]);
+}
+$("#g-m").onclick = () => start("m");
+$("#g-f").onclick = () => start("f");
+$("#speed").onclick = () => {
+  speed = speed === 1 ? 4 : 1;
+  $("#speed").textContent = speed === 1 ? "⏩ מהר" : "▶︎ רגיל";
+};
+</script>
+</body>
+</html>
